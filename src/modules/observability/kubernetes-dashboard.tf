@@ -27,7 +27,8 @@ resource "kubernetes_service_account" "kubernetes_dashboard" {
   count = local.deployment_configs.kubernetes_dashboard.count
 
   metadata {
-    name      = "admin-user"
+    # name      = "kubernetes-dashboard-admin-user"
+    name      = local.kubernetes_dashboard.admin.name
     namespace = "observability"
   }
 
@@ -40,7 +41,8 @@ resource "kubernetes_cluster_role_binding" "kubernetes_dashboard" {
   count = local.deployment_configs.kubernetes_dashboard.count
 
   metadata {
-    name = "admin-user"
+    name = local.kubernetes_dashboard.admin.name
+    # name = "kubernetes-dashboard-admin-user"
   }
 
   role_ref {
@@ -51,7 +53,7 @@ resource "kubernetes_cluster_role_binding" "kubernetes_dashboard" {
 
   subject {
     kind      = "ServiceAccount"
-    name      = "admin-user"
+    name      = local.kubernetes_dashboard.admin.name
     namespace = "observability"
   }
 
@@ -59,4 +61,12 @@ resource "kubernetes_cluster_role_binding" "kubernetes_dashboard" {
     helm_release.kubernetes_dashboard[0],
     kubernetes_service_account.kubernetes_dashboard[0]
   ]
+}
+
+resource "kubernetes_token_request_v1" "admin_user" {
+  count = 1
+  metadata {
+    name      = kubernetes_service_account.kubernetes_dashboard[0].metadata[0].name
+    namespace = "observability"
+  }
 }

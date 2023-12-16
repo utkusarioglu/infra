@@ -9,6 +9,10 @@ resource "helm_release" "loki" {
   namespace         = "observability"
   dependency_update = true
   cleanup_on_fail   = true
-  timeout           = var.helm_timeout_unit * 3
-  atomic            = var.helm_atomic
+  force_update      = true
+
+  # timeout = var.helm_timeout_unit * 3
+  timeout = var.helm_timeout_unit / 2
+
+  atomic = var.helm_atomic
 }

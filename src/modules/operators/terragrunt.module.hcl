@@ -22,7 +22,6 @@ locals {
   required_var_files = [
     "jaeger-operator",
     "otel-operator",
-    "grafana-operator"
   ]
 
   config_templates = {

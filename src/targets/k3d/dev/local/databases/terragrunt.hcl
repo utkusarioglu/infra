@@ -119,39 +119,17 @@ terraform {
     ]
   }
 
-  after_hook "remove_migration_tar_files" {
-    commands     = ["destroy"]
-    run_on_error = true
-    execute = [
-      "rm",
-      "-rf",
-      local.postgres_storage_migration_artifacts_abspath
-    ]
-  }
-
-  // after_hook "validate_tflint" {
-  //   commands = ["validate"]
-  //   execute  = ["sh", "-c", "tflint --config=.tflint.hcl -f default"]
+  # Deletes the Db migration artifacts.
+  # Enabling this is not a great idea as it removes data that is curently in
+  # production. This can cause issues during apply and destroy operations
+  // after_hook "remove_migration_tar_files" {
+  //   commands     = ["destroy"]
+  //   run_on_error = true
+  //   execute = [
+  //     "rm",
+  //     "-rf",
+  //     local.postgres_storage_migration_artifacts_abspath
+  //   ]
   // }
-}
 
-// generate "generated_config_target" {
-//   path      = "aggregated_config_templates.tf"
-//   if_exists = "overwrite"
-//   contents = join("\n\n", ([
-//     for key, items in local.aggregated_config_templates :
-//     (
-//       templatefile(
-//         "${get_repo_root()}/src/templates/wrappers/${key}.tftpl.hcl", {
-//           contents = join("\n", [
-//             for j, template in items :
-//             templatefile(
-//               "${get_repo_root()}/src/templates/${key}/${template.name}.tftpl.hcl",
-//               try(template.args, {})
-//             )
-//           ])
-//         }
-//       )
-//     )
-//   ]))
-// }
+}

@@ -33,6 +33,11 @@ PGPASSWORD=${postgres_password} \
     IN GROUP ${vault_manager_group_name}
     ENCRYPTED PASSWORD '${vault_manager_ai_education_password}' 
     CONNECTION LIMIT 5;
+
+  GRANT ${vault_manager_group_name} 
+    TO ${vault_manager_ai_education_username}
+    WITH ADMIN OPTION;
+
   GRANT ALL ON DATABASE ai_education 
     TO ${vault_manager_ai_education_username}
     WITH GRANT OPTION;
@@ -66,6 +71,11 @@ PGPASSWORD=${postgres_password} \
     IN GROUP ${vault_manager_group_name}
     ENCRYPTED PASSWORD '${vault_manager_inflation_password}'
     CONNECTION LIMIT 5;
+
+  GRANT ${vault_manager_group_name} 
+    TO ${vault_manager_inflation_username}
+    WITH ADMIN OPTION;
+
   GRANT ALL ON DATABASE inflation 
     TO ${vault_manager_inflation_username}
     WITH GRANT OPTION;

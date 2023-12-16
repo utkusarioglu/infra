@@ -64,19 +64,4 @@ locals {
       }
     ]
   }
-
-  // target_parts       = split("/", trimprefix(get_path_from_repo_root(), "src/targets/"))
-  // parent_precedence2 = ["repo", "platform", "environment", "region", "target", "module"]
-  // module_parents     = slice(local.parent_precedence2, 1, length(local.target_parts) + 1)
-  // zipped = zipmap(
-  //   local.module_parents,
-  //   local.target_parts
-  // )
 }
-
-// terraform {
-//   before_hook "echo2" {
-//     commands = ["validate"]
-//     execute  = ["sh", "-c", "echo region: ${jsonencode(local.region)}"]
-//   }
-// }

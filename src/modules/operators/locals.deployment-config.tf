@@ -7,18 +7,12 @@ locals {
       jaeger_operator = {
         count = 1
       }
-      grafana_operator = {
-        count = 1
-      }
     }
     none = {
       otel_operator = {
         count = 0
       }
       jaeger_operator = {
-        count = 0
-      }
-      grafana_operator = {
         count = 0
       }
     }
@@ -31,14 +25,6 @@ locals {
       local.deployment_config_templates.none,
       {
         jaeger_operator = {
-          count = 1
-        }
-      }
-    )
-    grafana = merge(
-      local.deployment_config_templates.none,
-      {
-        grafana_operator = {
           count = 1
         }
       }

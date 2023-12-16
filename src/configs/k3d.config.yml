@@ -118,6 +118,9 @@ options:
       - label: "postgres-storage.ms/dumps-mounted=true"
         nodeFilters:
           - agent:2
+      - label: "loki-single-binary.observability/target-volume=true"
+        nodeFilters:
+          - agent:1
   kubeconfig:
     updateDefaultKubeconfig: true
     switchCurrentContext: true

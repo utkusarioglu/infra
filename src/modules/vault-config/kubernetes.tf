@@ -46,9 +46,11 @@ resource "vault_kubernetes_auth_backend_role" "grafana" {
   depends_on = [
     vault_kubernetes_auth_backend_config.kubernetes[0]
   ]
-  backend                          = vault_auth_backend.kubernetes[0].path
-  role_name                        = "grafana-deployment"
-  bound_service_account_names      = ["grafana-deployment"]
+  backend = vault_auth_backend.kubernetes[0].path
+  # role_name                        = "grafana-deployment"
+  # bound_service_account_names      = ["grafana-deployment"]
+  role_name                        = "grafana"
+  bound_service_account_names      = ["grafana"]
   bound_service_account_namespaces = ["observability"]
   token_ttl                        = 3600
   token_policies = [
