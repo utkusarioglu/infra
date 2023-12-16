@@ -1,0 +1,5 @@
+otel_operator_resource_name       = "otel-operator"
+otel_operator_resource_chart      = "opentelemetry-operator"
+otel_operator_resource_repository = "https://open-telemetry.github.io/opentelemetry-helm-charts"
+# otel_operator_resource_version    = "0.11.8"
+otel_operator_resource_version = "0.44.0"

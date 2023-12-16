@@ -1,0 +1,5 @@
+jaeger_operator_resource_name       = "jaeger-operator"
+jaeger_operator_resource_chart      = "jaeger-operator"
+jaeger_operator_resource_repository = "https://jaegertracing.github.io/helm-charts"
+# jaeger_operator_resource_version    = "2.38.0"
+jaeger_operator_resource_version = "2.49.0"
