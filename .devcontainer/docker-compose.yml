@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3.11"
 services:
   nextjs-grpc-infra:
     command: /bin/sh -c "while sleep 1000; do :; done"
@@ -19,13 +19,13 @@ services:
         target: /etc/ssl/certs/root.crt
         read_only: true
         # These depends on the host system
-      - type: bind
-        source: ~/.aws/credentials
-        target: /home/terraform/.aws/credentials
-        read_only: true
-      - type: bind
-        source: ~/.kube
-        target: /home/terraform/.kube
+      # - type: bind
+      #   source: ~/.aws/credentials
+      #   target: /home/terraform/.aws/credentials
+      #   read_only: true
+      # - type: bind
+      #   source: ~/.kube
+      #   target: /home/terraform/.kube
 
 volumes:
   vscode-server-extensions:
